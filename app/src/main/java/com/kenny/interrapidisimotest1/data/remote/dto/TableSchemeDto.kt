@@ -2,7 +2,7 @@ package com.kenny.interrapidisimotest1.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class TablaEsquemaDto(
+data class TableSchemeDto(
     @SerializedName("NombreTabla") val tableName: String?,
     @SerializedName("Pk") val primaryKey: String?,
     @SerializedName("QueryCreacion") val createQuery: String?,

@@ -2,7 +2,7 @@ package com.kenny.interrapidisimotest1.data.repository
 
 import com.kenny.interrapidisimotest1.data.local.dao.TablaDao
 import com.kenny.interrapidisimotest1.data.local.entity.TablaEntity
-import com.kenny.interrapidisimotest1.data.remote.api.FrameworkApi
+import com.kenny.interrapidisimotest1.data.remote.api.InterApi
 import com.kenny.interrapidisimotest1.data.remote.mapper.HttpErrorMapper
 import com.kenny.interrapidisimotest1.domain.model.DomainError
 import com.kenny.interrapidisimotest1.domain.model.Either
@@ -12,14 +12,14 @@ import java.io.IOException
 import javax.inject.Inject
 
 class TablaRepositoryImpl @Inject constructor(
-    private val frameworkApi: FrameworkApi,
+    private val interApi: InterApi,
     private val tablaDao: TablaDao,
     private val errorMapper: HttpErrorMapper,
 ) : TablaRepository {
 
     override suspend fun syncTables(): Either<DomainError, Unit> {
         return try {
-            val response = frameworkApi.getSchema()
+            val response = interApi.getSchema()
             if (response.isSuccessful) {
                 val entities = response.body().orEmpty().mapNotNull { dto ->
                     dto.tableName?.let { name ->

@@ -2,7 +2,7 @@ package com.kenny.interrapidisimotest1.data.repository
 
 import com.kenny.interrapidisimotest1.data.local.dao.UserDao
 import com.kenny.interrapidisimotest1.data.local.entity.UserEntity
-import com.kenny.interrapidisimotest1.data.remote.api.SecurityApi
+import com.kenny.interrapidisimotest1.data.remote.api.InterApi
 import com.kenny.interrapidisimotest1.data.remote.dto.AuthRequestDto
 import com.kenny.interrapidisimotest1.data.remote.mapper.HttpErrorMapper
 import com.kenny.interrapidisimotest1.domain.model.DomainError
@@ -13,14 +13,14 @@ import java.io.IOException
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val securityApi: SecurityApi,
+    private val interApi: InterApi,
     private val userDao: UserDao,
     private val errorMapper: HttpErrorMapper,
 ) : AuthRepository {
 
     override suspend fun login(): Either<DomainError, User> {
         return try {
-            val response = securityApi.authenticate(AuthRequestDto())
+            val response = interApi.authenticate(AuthRequestDto())
             if (response.isSuccessful) {
                 val dto = response.body() ?: return Either.Left(DomainError.Unknown)
                 val username = dto.username ?: return Either.Left(DomainError.Unknown)

@@ -1,7 +1,6 @@
 package com.kenny.interrapidisimotest1.di
 
-import com.kenny.interrapidisimotest1.data.remote.api.FrameworkApi
-import com.kenny.interrapidisimotest1.data.remote.api.SecurityApi
+import com.kenny.interrapidisimotest1.data.remote.api.InterApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,7 +9,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -30,31 +28,15 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    @Named("framework")
-    fun provideFrameworkRetrofit(okHttpClient: OkHttpClient): Retrofit =
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://apitesting.interrapidisimo.co/apicontrollerpruebas/")
+            .baseUrl("https://apitesting.interrapidisimo.co/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
     @Provides
     @Singleton
-    @Named("security")
-    fun provideSecurityRetrofit(okHttpClient: OkHttpClient): Retrofit =
-        Retrofit.Builder()
-            .baseUrl("https://apitesting.interrapidisimo.co/FtEntregaElectronica/MultiCanales/ApiSeguridadPruebas/")
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-    @Provides
-    @Singleton
-    fun provideFrameworkApi(@Named("framework") retrofit: Retrofit): FrameworkApi =
-        retrofit.create(FrameworkApi::class.java)
-
-    @Provides
-    @Singleton
-    fun provideSecurityApi(@Named("security") retrofit: Retrofit): SecurityApi =
-        retrofit.create(SecurityApi::class.java)
+    fun provideInterApi(retrofit: Retrofit): InterApi =
+        retrofit.create(InterApi::class.java)
 }
