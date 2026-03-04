@@ -2,7 +2,7 @@ package com.kenny.interrapidisimotest1.di
 
 import android.content.Context
 import androidx.room.Room
-import com.kenny.interrapidisimotest1.data.local.dao.TablaDao
+import com.kenny.interrapidisimotest1.data.local.dao.TableDao
 import com.kenny.interrapidisimotest1.data.local.dao.UserDao
 import com.kenny.interrapidisimotest1.data.local.db.AppDatabase
 import dagger.Module
@@ -27,5 +27,5 @@ object DatabaseModule {
     fun provideUserDao(db: AppDatabase): UserDao = db.userDao()
 
     @Provides
-    fun provideTableDao(db: AppDatabase): TablaDao = db.tableDao()
+    fun provideTableDao(db: AppDatabase): TableDao = db.tableDao()
 }

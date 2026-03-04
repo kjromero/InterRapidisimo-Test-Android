@@ -35,7 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.kenny.interrapidisimotest1.domain.model.Localidad
+import com.kenny.interrapidisimotest1.domain.model.Locality
 import com.kenny.interrapidisimotest1.presentation.common.ErrorMessage
 import com.kenny.interrapidisimotest1.presentation.common.LoadingOverlay
 import com.kenny.interrapidisimotest1.presentation.common.UiState
@@ -85,7 +85,7 @@ fun LocalidadesScreen(onBack: () -> Unit) {
 }
 
 @Composable
-private fun LocalidadesList(localities: List<Localidad>) {
+private fun LocalidadesList(localities: List<Locality>) {
     if (localities.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text("No hay localidades disponibles", style = MaterialTheme.typography.bodyLarge)
@@ -103,7 +103,7 @@ private fun LocalidadesList(localities: List<Localidad>) {
 }
 
 @Composable
-private fun LocalidadItem(localidad: Localidad) {
+private fun LocalidadItem(localidad: Locality) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),

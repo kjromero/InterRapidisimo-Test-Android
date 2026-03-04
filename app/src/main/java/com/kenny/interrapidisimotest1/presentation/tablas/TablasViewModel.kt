@@ -3,7 +3,7 @@ package com.kenny.interrapidisimotest1.presentation.tablas
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kenny.interrapidisimotest1.domain.model.Either
-import com.kenny.interrapidisimotest1.domain.model.Tabla
+import com.kenny.interrapidisimotest1.domain.model.Table
 import com.kenny.interrapidisimotest1.domain.usecase.GetTablesUseCase
 import com.kenny.interrapidisimotest1.domain.usecase.SyncTablesUseCase
 import com.kenny.interrapidisimotest1.presentation.common.UiState
@@ -21,8 +21,8 @@ class TablasViewModel @Inject constructor(
     private val getTablesUseCase: GetTablesUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<UiState<List<Tabla>>>(UiState.Loading)
-    val uiState: StateFlow<UiState<List<Tabla>>> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow<UiState<List<Table>>>(UiState.Loading)
+    val uiState: StateFlow<UiState<List<Table>>> = _uiState.asStateFlow()
 
     init {
         syncAndLoad()

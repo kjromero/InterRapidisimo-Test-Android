@@ -1,21 +1,21 @@
 package com.kenny.interrapidisimotest1.data.repository
 
-import com.kenny.interrapidisimotest1.data.local.dao.TablaDao
-import com.kenny.interrapidisimotest1.data.local.entity.TablaEntity
+import com.kenny.interrapidisimotest1.data.local.dao.TableDao
+import com.kenny.interrapidisimotest1.data.local.entity.TableEntity
 import com.kenny.interrapidisimotest1.data.remote.api.InterApi
 import com.kenny.interrapidisimotest1.data.remote.mapper.HttpErrorMapper
 import com.kenny.interrapidisimotest1.domain.model.DomainError
 import com.kenny.interrapidisimotest1.domain.model.Either
-import com.kenny.interrapidisimotest1.domain.model.Tabla
-import com.kenny.interrapidisimotest1.domain.repository.TablaRepository
+import com.kenny.interrapidisimotest1.domain.model.Table
+import com.kenny.interrapidisimotest1.domain.repository.TableRepository
 import java.io.IOException
 import javax.inject.Inject
 
-class TablaRepositoryImpl @Inject constructor(
+class TableRepositoryImpl @Inject constructor(
     private val interApi: InterApi,
-    private val tablaDao: TablaDao,
+    private val tablaDao: TableDao,
     private val errorMapper: HttpErrorMapper,
-) : TablaRepository {
+) : TableRepository {
 
     override suspend fun syncTables(): Either<DomainError, Unit> {
         return try {
@@ -23,7 +23,7 @@ class TablaRepositoryImpl @Inject constructor(
             if (response.isSuccessful) {
                 val entities = response.body().orEmpty().mapNotNull { dto ->
                     dto.tableName?.let { name ->
-                        TablaEntity(
+                        TableEntity(
                             tableName = name,
                             primaryKey = dto.primaryKey,
                             fieldCount = dto.fieldCount,
@@ -44,6 +44,6 @@ class TablaRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getTables(): List<Tabla> =
-        tablaDao.getAll().map { Tabla(it.tableName, it.primaryKey, it.fieldCount, it.lastSyncDate) }
+    override suspend fun getTables(): List<Table> =
+        tablaDao.getAll().map { Table(it.tableName, it.primaryKey, it.fieldCount, it.lastSyncDate) }
 }

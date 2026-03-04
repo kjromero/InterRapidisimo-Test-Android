@@ -4,23 +4,23 @@ import com.kenny.interrapidisimotest1.data.remote.api.InterApi
 import com.kenny.interrapidisimotest1.data.remote.mapper.HttpErrorMapper
 import com.kenny.interrapidisimotest1.domain.model.DomainError
 import com.kenny.interrapidisimotest1.domain.model.Either
-import com.kenny.interrapidisimotest1.domain.model.Localidad
-import com.kenny.interrapidisimotest1.domain.repository.LocalidadRepository
+import com.kenny.interrapidisimotest1.domain.model.Locality
+import com.kenny.interrapidisimotest1.domain.repository.LocalityRepository
 import java.io.IOException
 import javax.inject.Inject
 
-class LocalidadRepositoryImpl @Inject constructor(
+class LocalityRepositoryImpl @Inject constructor(
     private val interApi: InterApi,
     private val errorMapper: HttpErrorMapper,
-) : LocalidadRepository {
+) : LocalityRepository {
 
-    override suspend fun getLocalities(): Either<DomainError, List<Localidad>> {
+    override suspend fun getLocalities(): Either<DomainError, List<Locality>> {
         return try {
             val response = interApi.getPickupLocations()
             if (response.isSuccessful) {
                 val localities = response.body().orEmpty().mapNotNull { dto ->
                     dto.cityAbbreviation?.let { abbr ->
-                        Localidad(cityAbbreviation = abbr, fullName = dto.fullName ?: "")
+                        Locality(cityAbbreviation = abbr, fullName = dto.fullName ?: "")
                     }
                 }
                 Either.Right(localities)

@@ -3,7 +3,7 @@ package com.kenny.interrapidisimotest1.presentation.localidades
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kenny.interrapidisimotest1.domain.model.Either
-import com.kenny.interrapidisimotest1.domain.model.Localidad
+import com.kenny.interrapidisimotest1.domain.model.Locality
 import com.kenny.interrapidisimotest1.domain.usecase.GetLocalidadesUseCase
 import com.kenny.interrapidisimotest1.presentation.common.UiState
 import com.kenny.interrapidisimotest1.presentation.common.toUiMessage
@@ -19,8 +19,8 @@ class LocalidadesViewModel @Inject constructor(
     private val getLocalidadesUseCase: GetLocalidadesUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<UiState<List<Localidad>>>(UiState.Loading)
-    val uiState: StateFlow<UiState<List<Localidad>>> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow<UiState<List<Locality>>>(UiState.Loading)
+    val uiState: StateFlow<UiState<List<Locality>>> = _uiState.asStateFlow()
 
     init {
         load()

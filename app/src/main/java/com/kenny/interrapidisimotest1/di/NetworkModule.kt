@@ -1,5 +1,6 @@
 package com.kenny.interrapidisimotest1.di
 
+import com.kenny.interrapidisimotest1.AppConfig
 import com.kenny.interrapidisimotest1.data.remote.api.InterApi
 import dagger.Module
 import dagger.Provides
@@ -30,7 +31,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://apitesting.interrapidisimo.co/")
+            .baseUrl(AppConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

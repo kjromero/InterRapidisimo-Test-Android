@@ -36,7 +36,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.kenny.interrapidisimotest1.domain.model.Tabla
+import com.kenny.interrapidisimotest1.domain.model.Table
 import com.kenny.interrapidisimotest1.presentation.common.ErrorMessage
 import com.kenny.interrapidisimotest1.presentation.common.LoadingOverlay
 import com.kenny.interrapidisimotest1.presentation.common.UiState
@@ -86,7 +86,7 @@ fun TablasScreen(onBack: () -> Unit) {
 }
 
 @Composable
-private fun TableList(tables: List<Tabla>) {
+private fun TableList(tables: List<Table>) {
     if (tables.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text("No hay tablas disponibles", style = MaterialTheme.typography.bodyLarge)
@@ -104,7 +104,7 @@ private fun TableList(tables: List<Tabla>) {
 }
 
 @Composable
-private fun TableItem(table: Tabla) {
+private fun TableItem(table: Table) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),

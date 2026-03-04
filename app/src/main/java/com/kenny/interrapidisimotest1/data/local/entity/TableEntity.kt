@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "tables_schema")
-data class TablaEntity(
+data class TableEntity(
     @PrimaryKey val tableName: String,
     val primaryKey: String?,
     val fieldCount: Int?,

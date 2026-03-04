@@ -4,16 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.kenny.interrapidisimotest1.data.local.entity.TablaEntity
+import com.kenny.interrapidisimotest1.data.local.entity.TableEntity
 
 @Dao
-interface TablaDao {
+interface TableDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsertAll(tables: List<TablaEntity>)
+    suspend fun upsertAll(tables: List<TableEntity>)
 
     @Query("SELECT * FROM tables_schema ORDER BY tableName ASC")
-    suspend fun getAll(): List<TablaEntity>
+    suspend fun getAll(): List<TableEntity>
 
     @Query("DELETE FROM tables_schema")
     suspend fun deleteAll()

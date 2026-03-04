@@ -2,7 +2,7 @@ package com.kenny.interrapidisimotest1.data.remote.api
 
 import com.kenny.interrapidisimotest1.data.remote.dto.AuthRequestDto
 import com.kenny.interrapidisimotest1.data.remote.dto.AuthResponseDto
-import com.kenny.interrapidisimotest1.data.remote.dto.LocalidadDto
+import com.kenny.interrapidisimotest1.data.remote.dto.LocalityDto
 import com.kenny.interrapidisimotest1.data.remote.dto.TableSchemeDto
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -21,7 +21,7 @@ interface InterApi {
     suspend fun getSchema(): Response<List<TableSchemeDto>>
 
     @GET("apicontrollerpruebas/api/ParametrosFramework/ObtenerLocalidadesRecogidas")
-    suspend fun getPickupLocations(): Response<List<LocalidadDto>>
+    suspend fun getPickupLocations(): Response<List<LocalityDto>>
 
     @Headers(
         "Usuario: pam.meredy21",
