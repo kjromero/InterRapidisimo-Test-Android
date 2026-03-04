@@ -126,18 +126,18 @@ private fun TableItem(table: Tabla) {
                     fontWeight = FontWeight.SemiBold,
                 )
             }
-            if (!table.description.isNullOrBlank()) {
+            if (!table.primaryKey.isNullOrBlank()) {
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = table.description,
+                    text = "PK: ${table.primaryKey}",
                     style = MaterialTheme.typography.bodySmall,
                     color = Color.Gray,
                     modifier = Modifier.padding(start = 14.dp),
                 )
             }
-            if (!table.keyFields.isNullOrBlank()) {
+            if (table.fieldCount != null) {
                 Text(
-                    text = "Key fields: ${table.keyFields}",
+                    text = "Campos: ${table.fieldCount}",
                     style = MaterialTheme.typography.labelSmall,
                     color = InterBlue,
                     modifier = Modifier.padding(start = 14.dp, top = 2.dp),

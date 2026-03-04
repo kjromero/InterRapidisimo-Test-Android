@@ -9,7 +9,7 @@ import com.kenny.interrapidisimotest1.data.local.entity.UserEntity
 
 @Database(
     entities = [UserEntity::class, TablaEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false,
 )
 abstract class AppDatabase : RoomDatabase() {

@@ -4,9 +4,12 @@ import com.google.gson.annotations.SerializedName
 
 data class TablaEsquemaDto(
     @SerializedName("NombreTabla") val tableName: String?,
-    @SerializedName("Descripcion") val description: String?,
-    @SerializedName("CamposClave") val keyFields: String?,
-    @SerializedName("Activo") val active: Boolean?,
-    @SerializedName("NombreServidor") val serverName: String?,
-    @SerializedName("NombreBase") val databaseName: String?,
+    @SerializedName("Pk") val primaryKey: String?,
+    @SerializedName("QueryCreacion") val createQuery: String?,
+    @SerializedName("BatchSize") val batchSize: Int?,
+    @SerializedName("Filtro") val filter: String?,
+    @SerializedName("Error") val error: String?,
+    @SerializedName("NumeroCampos") val fieldCount: Int?,
+    @SerializedName("MetodoApp") val appMethod: String?,
+    @SerializedName("FechaActualizacionSincro") val lastSyncDate: String?,
 )

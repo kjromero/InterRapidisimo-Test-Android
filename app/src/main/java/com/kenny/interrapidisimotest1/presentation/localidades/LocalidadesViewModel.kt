@@ -2,9 +2,11 @@ package com.kenny.interrapidisimotest1.presentation.localidades
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kenny.interrapidisimotest1.domain.model.Either
 import com.kenny.interrapidisimotest1.domain.model.Localidad
 import com.kenny.interrapidisimotest1.domain.usecase.GetLocalidadesUseCase
 import com.kenny.interrapidisimotest1.presentation.common.UiState
+import com.kenny.interrapidisimotest1.presentation.common.toUiMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,9 +29,10 @@ class LocalidadesViewModel @Inject constructor(
     private fun load() {
         viewModelScope.launch {
             _uiState.value = UiState.Loading
-            runCatching { getLocalidadesUseCase() }
-                .onSuccess { _uiState.value = UiState.Success(it) }
-                .onFailure { _uiState.value = UiState.Error(it.message ?: "Failed to load localities") }
+            when (val result = getLocalidadesUseCase()) {
+                is Either.Left -> _uiState.value = UiState.Error(result.value.toUiMessage())
+                is Either.Right -> _uiState.value = UiState.Success(result.value)
+            }
         }
     }
 }
