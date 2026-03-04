@@ -6,6 +6,9 @@ import com.kenny.interrapidisimotest1.domain.model.Locality
 import com.kenny.interrapidisimotest1.domain.repository.LocalityRepository
 import javax.inject.Inject
 
+/**
+ * This Use Case returns the localities.
+ */
 class GetLocalitiesUseCase @Inject constructor(
     private val localityRepository: LocalityRepository,
 ) {

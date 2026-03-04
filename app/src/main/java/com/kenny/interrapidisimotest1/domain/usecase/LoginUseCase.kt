@@ -6,6 +6,9 @@ import com.kenny.interrapidisimotest1.domain.model.User
 import com.kenny.interrapidisimotest1.domain.repository.AuthRepository
 import javax.inject.Inject
 
+/**
+ * This Use Case logins the user.
+ */
 class LoginUseCase @Inject constructor(
     private val authRepository: AuthRepository,
 ) {
